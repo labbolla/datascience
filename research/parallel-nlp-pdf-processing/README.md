@@ -1,75 +1,116 @@
 # Parallel NLP Processing of Historical PDF Collections
 
-Research project developed at the University of Brasília (UnB) focusing on
-the parallelization of an NLP pipeline for large-scale processing of
-Portuguese-language academic PDF collections.
+Research project focused on the parallelization and performance evaluation of an **NLP and text-mining pipeline** for large-scale processing of academic PDF collections.
 
-## Overview
+The study compares **Python Multiprocessing** and **Dask** as parallelization strategies for accelerating the extraction of themes and representative keywords from heterogeneous, unstructured Portuguese-language documents.
 
-The project evaluates two parallel processing strategies — Python
-Multiprocessing and Dask — for accelerating an NLP pipeline designed
-to extract themes and representative keywords from unstructured
-academic documents.
+## Project Overview
 
-The pipeline combines PDF text extraction, linguistic preprocessing,
-bigram detection, semantic graph construction and PageRank-based
-keyword extraction.
+The project was developed in the context of the **Oxossi** research initiative at the University of Brasília (UnB), which processes collections of academic and historical documents to identify relevant themes and keywords.
 
-## Technologies
+The complete corpus contains approximately **9,365 PDF documents**, including files with heterogeneous sizes, scanned content, irregular structures and noisy formatting.
 
-- Python
-- Dask
-- Multiprocessing
-- spaCy
-- NetworkX
-- PyMuPDF / PyPDF2
-- NLP
-- Text Mining
-- PageRank
-- CRISP-DM
-- Parallel Computing
+The main objectives were to:
 
-## Pipeline
+* process large collections of unstructured PDF documents;
+* extract and preprocess textual information;
+* identify representative themes and keywords;
+* construct semantic co-occurrence graphs;
+* parallelize CPU-intensive NLP workloads;
+* compare alternative parallel-processing strategies;
+* evaluate execution time, CPU utilization, memory consumption and scalability.
 
-PDF Extraction
-→ Validation
-→ Language Detection
-→ Text Cleaning
-→ Bigram Extraction
-→ Lemmatization
-→ Co-occurrence Graph
-→ PageRank
-→ Theme Extraction
+## NLP Processing Pipeline
+
+The processing workflow includes:
+
+```text
+PDF Documents
+      ↓
+Text Extraction
+      ↓
+File Validation
+      ↓
+Language Detection
+      ↓
+Text Cleaning
+      ↓
+Bigram Extraction
+      ↓
+Lemmatization & POS Tagging
+      ↓
+Co-occurrence Graph Construction
+      ↓
+PageRank
+      ↓
+Theme / Keyword Extraction
+```
+
+### Main Technologies
+
+* **Python**
+* **Dask**
+* **Multiprocessing**
+* **spaCy**
+* **NetworkX**
+* **PyMuPDF / PyPDF2**
+* **Lingua**
+* **PageRank**
+* **Natural Language Processing (NLP)**
+* **Text Mining**
+* **Graph Analysis**
+* **Parallel Computing**
+* **CRISP-DM**
 
 ## Parallel Processing
 
-Two approaches were compared:
+Two parallelization approaches were evaluated.
 
-- Python Multiprocessing
-- Dask
+### Python Multiprocessing
 
-In the benchmark with 500 PDF documents and 7 workers:
+Files are distributed across independent worker processes using Python's native multiprocessing capabilities.
 
-- Multiprocessing: 5.47× speedup and 78.14% parallel efficiency
-- Dask: 3.53× speedup and 50.39% parallel efficiency
+This approach is particularly suitable for file-level CPU-bound workloads where individual documents can be processed independently.
 
-Multiprocessing demonstrated better performance for file-level
-parallelism on the evaluated single-node environment.
+### Dask
+
+Dask uses a task-scheduling architecture based on directed acyclic graphs (DAGs), allowing more flexible management of computational workflows and providing potential scalability toward more complex or distributed processing scenarios.
+
+## Performance Evaluation
+
+The main benchmark used a stratified sample of **500 PDF documents** processed on a single-node environment with **7 workers**.
+
+| Approach        | Execution Time |   Speedup | Parallel Efficiency |
+| --------------- | -------------: | --------: | ------------------: |
+| Sequential      |     3h 58m 34s |     1.00× |                   — |
+| Multiprocessing |        43m 38s | **5.47×** |          **78.14%** |
+| Dask            |     1h 07m 38s | **3.53×** |          **50.39%** |
+
+For this file-level workload, **Python Multiprocessing achieved the best overall performance**, combining higher speedup with lower memory consumption.
+
+Dask introduced greater scheduling and memory overhead in the tested single-node environment, while retaining potential advantages for more complex task graphs, intra-document parallelization and distributed workloads.
 
 ## My Contribution
 
-I designed and implemented the parallel processing architecture,
-including the Multiprocessing and Dask implementations and the
-performance benchmarking.
+My work on the project included:
 
-I also adapted and integrated the NLP preprocessing module into the
-parallel processing pipeline.
+* design and implementation of the parallel processing architecture;
+* integration and adaptation of the NLP preprocessing pipeline;
+* implementation of the **Python Multiprocessing** solution;
+* implementation of the **Dask** solution;
+* design of the PDF-processing workflow;
+* performance benchmarking;
+* analysis of execution time, CPU utilization, memory consumption and parallel efficiency.
 
 ## Research Areas
 
-Natural Language Processing · Text Mining · Big Data · Parallel
-Computing · Unstructured Data · Graph Analysis · Data Mining
+`Natural Language Processing` · `Text Mining` · `Unstructured Data` · `Parallel Computing` · `Dask` · `Multiprocessing` · `Graph Analysis` · `PageRank` · `Data Mining` · `Performance Benchmarking`
 
-## Paper
+## Research Paper
 
-[Read the full paper](paper/parallel_nlp_processing_historical_pdfs.pdf)
+📄 **[Read the full paper](parallel_nlp_processing_historical_pdfs.pdf)**
+
+### Authors
+
+**Nicola Defonte**, Claudio Henrique M. de Oliveira, Marcelo Ladeira and Gustavo van Erven
+University of Brasília (UnB), Brasília, Brazil
