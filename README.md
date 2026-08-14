@@ -289,7 +289,7 @@ This project represents an early application of statistical research design and 
 
 ---
 
-# Technical Skills Demonstrated
+# Technical Skills (in the works)
 
 ### Data Science & Machine Learning
 
