@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+SQLAlchemy
+psycopg[binary]
+pgvector
+pydantic
+python-dotenv
+httpx
+openai
+sentence-transformers
+APScheduler

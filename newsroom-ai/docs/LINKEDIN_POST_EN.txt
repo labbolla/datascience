@@ -1,0 +1,26 @@
+I wanted to test JEV in something more realistic than an isolated API example.
+
+So I built an MVP called Newsroom AI: a monitoring pipeline for Brazilian institutional sources.
+
+The system currently ingests data from Câmara dos Deputados and Senado Federal, stores it in PostgreSQL, creates embeddings with pgvector, links related developments into threads, analyzes what changed, and exposes the results through a FastAPI + Next.js application.
+
+The part I was most interested in was JEV.
+
+I used it as a structured decision layer for tasks such as story classification, priority/category scoring, evaluating whether two developments belong to the same thread, and identifying signals such as status changes, new measures or contradictions.
+
+One of the most useful lessons from the project was also a limitation I hit while building it:
+
+semantic similarity is not the same thing as business relevance.
+
+Embeddings are very useful for retrieval and candidate generation, but letting vector similarity make the final decision produced poor results. A better architecture is to use retrieval to narrow the search space and a decision model to judge the actual relationship or relevance.
+
+That is exactly the kind of distinction that becomes obvious only when you put AI inside a complete pipeline rather than testing a model in isolation.
+
+Stack used in the MVP:
+Python · FastAPI · PostgreSQL · pgvector · sentence-transformers · JEV · OpenAI API · Next.js · TypeScript
+
+The project is still an MVP, but it was a useful exercise in building an end-to-end AI/data product: ingestion, deduplication, embeddings, structured AI decisions, event linking, change detection, APIs and frontend.
+
+I’ll publish the project on GitHub with the architecture and technical decisions documented.
+
+#AppliedAI #DataEngineering #Python #FastAPI #PostgreSQL #pgvector #GenerativeAI #MachineLearning
