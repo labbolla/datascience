@@ -443,6 +443,6 @@ I am particularly interested in:
 **Nicola Defonte**
 
 📍 Brasília, DF — Brazil
-📧 [nicola.defonte@gmail.com](mailto:nico.defonte@gmail.com)
+📧 [nico.defonte@gmail.com](mailto:nico.defonte@gmail.com)
 🌐 [LinkedIn](https://www.linkedin.com/in/nicola-defonte-0086269b/)
 💻 [GitHub](https://github.com/labbolla)
